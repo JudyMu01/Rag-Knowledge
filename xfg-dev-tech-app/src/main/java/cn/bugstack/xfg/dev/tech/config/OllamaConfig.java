@@ -32,11 +32,20 @@ public class OllamaConfig {
         return new OllamaChatClient(ollamaApi);
     }
 
+    /**
+     * 实例化分割工具类，注册成bean到spring容器
+     * @return
+     */
     @Bean
     public TokenTextSplitter tokenTextSplitter() {
         return new TokenTextSplitter();
     }
 
+    /**
+     * 返回简单向量存储，使用nomic-embed-text这种向量模型
+     * @param ollamaApi
+     * @return
+     */
     @Bean
     public SimpleVectorStore vectorStore(@Value("${spring.ai.rag.embed}") String model, OllamaApi ollamaApi, OpenAiApi openAiApi) {
         if ("nomic-embed-text".equalsIgnoreCase(model)) {
@@ -49,6 +58,12 @@ public class OllamaConfig {
         }
     }
 
+    /**
+     * 使用向量数据库存储
+     * @param ollamaApi
+     * @param jdbcTemplate
+     * @return
+     */
     @Bean
     public PgVectorStore pgVectorStore(@Value("${spring.ai.rag.embed}") String model, OllamaApi ollamaApi, OpenAiApi openAiApi, JdbcTemplate jdbcTemplate) {
         if ("nomic-embed-text".equalsIgnoreCase(model)) {

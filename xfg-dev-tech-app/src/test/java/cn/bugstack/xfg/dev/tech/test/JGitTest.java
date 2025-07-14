@@ -39,10 +39,11 @@ public class JGitTest {
 
     @Test
     public void test() throws Exception {
-        String repoURL = "https://gitcode.com/CreativeAlliance/group-buy-market-liergou";
-        String username = "Yao__Shun__Yu";
-        String password = "DqUc-jjKcNpgKaw8nmReNazm";
+        String repoURL = "https://gitcode.com/yangzongzhuan/RuoYi-Vue3.git";
+        String username = "gcw_nRxg5N1U";
+        String password = "(Mcd3551)";
 
+        // 检索文件到临时本地路径
         String localPath = "./cloned-repo";
         log.info("克隆路径：" + new File(localPath).getAbsolutePath());
 

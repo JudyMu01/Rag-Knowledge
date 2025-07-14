@@ -66,8 +66,11 @@ public class RAGController implements IRAGService {
             documents.forEach(doc -> doc.getMetadata().put("knowledge", ragTag));
             documentSplitterList.forEach(doc -> doc.getMetadata().put("knowledge", ragTag));
 
+            // 存储到向量数据库
             pgVectorStore.accept(documentSplitterList);
+            // 获取文件存储链接，然后再存到数据库中
 
+            // 看redis中是否存在当前知识库，不存在，则加入
             RList<String> elements = redissonClient.getList("ragTag");
             if (!elements.contains(ragTag)) {
                 elements.add(ragTag);
